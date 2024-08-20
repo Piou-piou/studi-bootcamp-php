@@ -1,3 +1,5 @@
+<?php
+
 // Exo 1
 // pour chacune des voitures afficher le kilométrage, type motorisation, etat
 $voitures = [
