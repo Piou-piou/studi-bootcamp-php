@@ -7,14 +7,13 @@ $voiture_id = $_GET['voiture_id'];
 $query = $pdo->query("SELECT * FROM voiture where id = ".$voiture_id);
 $voiture = $query->fetch(PDO::FETCH_ASSOC);
 
-$title = 'Voiture : '.$voiture['titre'];
+$title = 'Voiture : '.$voiture['immatriculation'];
 
 require_once 'templates/head.php';
 require_once 'templates/header.php';
 ?>
         <main>
-            <h1>Ma super agence</h1>
-            <a href="index.php">retour à la liste</a>
+            <h1>Voiture : <?php echo $voiture['immatriculation']; ?></h1>
 
             <div class="container">
                 <div class="row">
