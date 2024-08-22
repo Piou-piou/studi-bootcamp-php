@@ -18,6 +18,7 @@
  * pensez à utiliser un formulaire et récupérer les valeurs via $_POST
  */
 
+// ici require_once permet d'inclure le le contenu du fichier pdo.php dans celui-ci. globalement un copié/collé
 require_once 'pdo.php';
 
 $query = $pdo->query('SELECT * FROM voiture');
