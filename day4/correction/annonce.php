@@ -18,8 +18,8 @@ require_once 'templates/header.php';
 
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="col-sm-12 mb-12 mb-sm-0">
+                        <div class="col-sm-12 mb-12 mb-sm-0">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $annonce['titre'] ?></h5>
@@ -34,7 +34,6 @@ require_once 'templates/header.php';
                         </div>
                     </div>
                 </div>
-
             </div>
         </main>
 
