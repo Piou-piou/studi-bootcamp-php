@@ -1,6 +1,33 @@
 <?php
 
 
+/**
+ * Exercice 1 : préparer la page d'ajout d'une nouvelle annonce de voyage avec tous les valeurs (champs))
+ * présents dans votre table dans votre base de données
+ * et ensuite gérer l'ajout via un post d'un formulaire et insérer les données
+ * Pennsez $_POST
+ */
+
+/**
+ * Exercice 2
+ * gérer à minimum la sécurité de la requête en utilisant les bindParam et la méthode prepare de $pdo
+ */
+
+
+/**
+ * Exercice 3
+ * renvoyer un message de succès ou erreur sur la page d'accueil (index.php) en cas de succes
+ * d'ajout de votre annonce ou d'échec d'ajout
+ * pesnez $_GET
+ */
+
+
+/**
+ * Exercice 4 Bonus
+ * reprendre l'exercice 3 et tenter de faire passer le message via $_SESSION
+ * pensez session_start();
+ */
+
 require_once 'config/pdo.php';
 
 $query = $pdo->query('SELECT * FROM voiture');
