@@ -2,7 +2,7 @@ services:
   www:
     build: ../docker/php
     ports:
-      - 8741:80
+      - 8742:80
     volumes:
       - ./:/var/www
       - ../docker/php/vhosts:/etc/apache2/sites-enabled
@@ -23,7 +23,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - 8080:80
+      - 8081:80
     networks:
       - studi_php_day6
     environment:

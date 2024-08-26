@@ -1,36 +1,63 @@
 <?php
 
+require_once 'Personnage.php';
 
-require_once 'config/pdo.php';
 
-$query = $pdo->query('SELECT * FROM voiture');
-$voitures = $query->fetchAll(PDO::FETCH_ASSOC);
+/**
+ * Exercice 1 : faire en sorte q'un personnage puisse se défendre de la part d'un autre
+ * un personnage se défend d'un attaque reçue
+ */
 
-require_once 'templates/head.php';
-require_once 'templates/header.php';
-?>
+/**
+ * Exercice 2 : Création d'une class équipement qui permet a les propritétés suivantes
+ * - Point d'attaque
+ * - Point de défense
+ * - Durabilité
+ * Créer les getters et setters liés
+ */
 
-        <main>
-            <h1>Ma super garage</h1>
+/**
+ * Exercice 3 : POouvoir ajouter un équipement à un personnage
+ *
+ */
 
-            <div class="container">
-                <div class="row">
-                    <?php foreach ($voitures as $voiture) { ?>
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $voiture['marque'].' modèle '.$voiture['modele'].' : '.$voiture['immatriculation']; ?></h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <!-- ajout du paramètre voiture_id dans l'url pour pouvoir récupérer voiture par voiture sur la page voirutre  -->
-                                    <!-- la valeur de id changeà chaque tour dans le foreach et correspond à une voiture -->
-                                    <!-- que l'on récupérera via $_GET dans la page voiture.php -->
-                                    <a href="voiture.php?voiture_id=<?php echo $voiture['id'] ?>" class="btn btn-primary">Voir en détail</a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </main>
 
-        <?php require_once 'templates/footer.php'; ?>
+/**
+ * Exo Bonus : afficher la liste des equipements dans le navigateur
+ * pensez foreach ;)
+ */
+
+$merlin = new Personnage('Merlin', 100, 5); //Personnage Merlin
+$arthur = new Personnage('Arthur', 120, 50); //Personnage Arthur
+
+echo '<h2>Personnage Merlin</h2>';
+echo $merlin->getNom().'<br>';
+echo $merlin->getSante().'<br>';
+
+
+echo '<h2>Personnage Arthur</h2>';
+echo $arthur->getNom().'<br>';
+echo $arthur->getSante().'<br>';
+
+
+echo '<h2>merlin recoit une attaque d\'arthur lui faisant 30pv</h2>';
+$arthur->attaque($merlin);
+echo $merlin->getNom().'<br>';
+echo $merlin->getSante().'<br>';
+
+
+echo '<h2>merlin replique</h2>';
+$merlin->attaque($arthur);
+echo $arthur->getNom().'<br>';
+echo $arthur->getSante().'<br>';
+
+echo '<h2>merlin se soigne</h2>';
+$merlin->appliqueSoins();
+echo $merlin->getNom().'<br>';
+echo $merlin->getSante().'<br>';
+
+
+echo '<h2>arthur se soigne</h2>';
+$arthur->appliqueSoins();
+echo $arthur->getNom().'<br>';
+echo $arthur->getSante().'<br>';
