@@ -1,0 +1,33 @@
+services:
+  www:
+    build: ../docker/php
+    ports:
+      - 8741:80
+    volumes:
+      - ./:/var/www
+      - ../docker/php/vhosts:/etc/apache2/sites-enabled
+    networks:
+      - studi_php_day6
+
+  mysql:
+    image: mysql
+    volumes:
+      - ./var/db_data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - studi_php_day6
+
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - 8080:80
+    networks:
+      - studi_php_day6
+    environment:
+      PMA_HOST: mysql
+
+networks:
+  studi_php_day6:
