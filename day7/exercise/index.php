@@ -11,7 +11,7 @@ require_once 'templates/header.php';
 ?>
 
         <main>
-            <h1>Ma super agence <?php echo $_SESSION['test']; ?></h1>
+            <h1>Mon garage <?php echo $_SESSION['test'] ?? null; ?></h1>
 
             <?php if (isset($_SESSION['message'])): ?>
                 <div class="alert alert-success" role="alert">

@@ -1,6 +1,6 @@
 services:
   www:
-    build: ../docker/php
+    build: ../../docker/php
     ports:
       - 8742:80
     volumes:
