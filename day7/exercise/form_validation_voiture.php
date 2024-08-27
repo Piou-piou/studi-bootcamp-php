@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config/pdo.php';
+require_once 'config/DbConnection.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
     if (!$_POST['immatriculation'] ||
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
     ) {
         echo 'UN des champs est vide. Insertion impossible !';
     } else  {
-        $query = $pdo->prepare('INSERT INTO voiture
+        $query = DbConnection::getPdo()->prepare('INSERT INTO voiture
             (immatriculation, marque, annee, modele, km, type_motorisation, etat)
             VALUES (
                 :immatriculation,
