@@ -24,8 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!$query->execute()) {
             $error = 'une erreur est survenue';
         } else {
-
-
             echo 'success';
         }
     }
