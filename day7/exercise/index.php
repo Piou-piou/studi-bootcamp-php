@@ -1,8 +1,8 @@
 <?php
 
-require_once 'config/pdo.php';
+require_once 'config/DbConnection.php';
 
-$query = $pdo->query('SELECT * FROM voiture');
+$query = DbConnection::getPdo()->query('SELECT * FROM voiture');
 $voitures = $query->fetchAll(PDO::FETCH_ASSOC);
 
 

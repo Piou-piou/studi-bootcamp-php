@@ -1,10 +1,10 @@
 <?php
 
-require_once 'config/pdo.php';
+require_once 'config/DbConnection.php';
 
 $voiture_id = $_GET['voiture_id'];
 
-$query = $pdo->query("SELECT * FROM voiture where id = ".$voiture_id);
+$query = DbConnection::getPdo()->query("SELECT * FROM voiture where id = ".$voiture_id);
 $voiture = $query->fetch(PDO::FETCH_ASSOC);
 
 $title = 'Voiture : '.$voiture['immatriculation'];
