@@ -19,7 +19,7 @@ require_once 'templates/header.php';
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Mot de passe</label>
-            <input type="text" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password">
         </div>
 
         <div class="col-12">
