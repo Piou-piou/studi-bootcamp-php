@@ -1,6 +1,7 @@
 <?php
 
 require_once 'config/DbConnection.php';
+require_once 'config/session.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
     if (!$_POST['immatriculation'] ||

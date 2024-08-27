@@ -1,6 +1,7 @@
 <?php
 
 require_once 'config/DbConnection.php';
+require_once 'config/session.php';
 
 // partout dans le code dès que l'on voudra utiliser pdo
 // au lieu de passer par $pdo on préférera utiliser DbConnection::getPdo() car pus robuste
@@ -33,6 +34,12 @@ require_once 'templates/header.php';
         <div class="alert alert-success" role="alert">
             <?php echo $_SESSION['message']; ?>
             <?php unset($_SESSION['message']); ?>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($_SESSION['success_message'])): ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $_SESSION['success_message']; ?>
+            <?php unset($_SESSION['success_message']); ?>
         </div>
     <?php endif; ?>
 

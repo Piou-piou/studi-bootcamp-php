@@ -1,12 +1,10 @@
 <?php
 
 require_once 'config/DbConnection.php';
+require_once 'config/session.php';
 
 
 $title = 'Créer un compte';
-
-require_once 'templates/head.php';
-require_once 'templates/header.php';
 
 $error = null;
 
@@ -23,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // ici pour plus de sécurité on hash notre mot de passe afin de le protéger
         // et au cas ou ne pas garder le mdp en clair dans la base en cas de vol de données
         // on vérifie un mot de passe hashé via password_verify
+        // test ~ $2y$10$NlGveXH/89avQCu/Umm2jeb7IYOvEKKwTRJjBVIrz9xLGIRCzYnQ.
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
         $query->bindParam('password', $password);
@@ -30,10 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!$query->execute()) {
             $error = 'une erreur est survenue';
         } else {
-            echo 'success';
+            // ajout du message de succes en session pour pouvoir l'afficher sur la page de connection
+            $_SESSION['success_message'] = 'Votre compte a bien été créé';
+
+            header('Location: connection.php');
         }
     }
 }
+
+require_once 'templates/head.php';
+require_once 'templates/header.php';
 
 ?>
 

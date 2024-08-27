@@ -1,10 +1,12 @@
 <?php
 
+require_once 'config/session.php';
 
 $title = 'Ajouter une voiture';
 
 require_once 'templates/head.php';
 require_once 'templates/header.php';
+
 ?>
 
 <div class="container">

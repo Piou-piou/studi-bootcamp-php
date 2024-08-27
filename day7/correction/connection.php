@@ -1,7 +1,7 @@
 <?php
 
 require_once 'config/DbConnection.php';
-
+require_once 'config/session.php';
 
 $title = 'Connexion';
 
@@ -33,6 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error = 'Identifiants invalides';
             } else {
                 // si ok on redirige
+
+                //save l'utilisateur en session
+                unset($user['password']);
+                $_SESSION['user'] = $user;
+
                 header('Location: index.php');
             }
         }
@@ -49,6 +54,16 @@ require_once 'templates/header.php';
     <?php if ($error): ?>
         <div class="alert alert-warning" role="alert">
             <?php echo $error; ?>
+        </div>
+    <?php endif; ?>
+
+    <!-- récupération du la session success_message sii existante et on l'affiche puis on la détruit -->
+    <?php if (isset($_SESSION['success_message'])): ?>
+        <div class="alert alert-success" role="alert">
+            <?php
+            echo $_SESSION['success_message'];
+            unset($_SESSION['success_message']);
+            ?>
         </div>
     <?php endif; ?>
 
