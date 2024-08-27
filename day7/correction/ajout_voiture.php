@@ -1,7 +1,5 @@
 <?php
 
-require_once 'config/pdo.php';
-
 
 $title = 'Ajouter une voiture';
 
