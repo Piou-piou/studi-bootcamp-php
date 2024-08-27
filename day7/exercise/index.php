@@ -8,6 +8,19 @@ $voitures = $query->fetchAll(PDO::FETCH_ASSOC);
 
 require_once 'templates/head.php';
 require_once 'templates/header.php';
+
+/**
+ * Exercice 1 : sur la page inscription.php
+ * après l'inscription avec succes rediriger sur la page de connexion
+ * et sur cette page afficher un message de succes indiquant
+ * "Compte créé avec succès"
+ */
+
+/**
+ * Exercice 2 : trouver un moyen de sauvegarder l'utilisateur après connexion
+ * entre toutes les pages et afficher le pseudo de l'utilisateur sur toutes les pages
+ */
+
 ?>
 
         <main>
