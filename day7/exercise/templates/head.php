@@ -10,7 +10,7 @@
             if (isset($title)) {
                 echo $title;
             } else {
-                echo 'Ma super agence';
+                echo 'Mon garage';
             }
         ?>
     </title>
