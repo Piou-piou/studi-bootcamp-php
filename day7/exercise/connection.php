@@ -10,7 +10,7 @@ require_once 'templates/header.php';
 ?>
 
 <div class="container">
-    <h1>Ajouter une voiture</h1>
+    <h1>Se connecter</h1>
 
     <form action="" method="post">
         <div class="mb-3">

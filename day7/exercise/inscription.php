@@ -11,7 +11,7 @@ require_once 'templates/header.php';
 ?>
 
 <div class="container">
-    <h1>Ajouter un utilisateur</h1>
+    <h1>Créer un compte</h1>
 
     <form action="" method="post">
         <div class="mb-3">
