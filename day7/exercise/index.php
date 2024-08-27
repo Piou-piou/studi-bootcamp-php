@@ -2,6 +2,9 @@
 
 require_once 'config/DbConnection.php';
 
+// partout dans le code dès que l'on voudra utiliser pdo
+// au lieu de passer par $pdo on préférera utiliser DbConnection::getPdo() car pus robuste
+// et permet l'autocomplétion et de futurs tests
 $query = DbConnection::getPdo()->query('SELECT * FROM voiture');
 $voitures = $query->fetchAll(PDO::FETCH_ASSOC);
 

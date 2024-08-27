@@ -10,13 +10,19 @@ require_once 'templates/header.php';
 
 $error = null;
 
+// test si la méthode envoyée est bien POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // test des données du formulaire posté afin de voir si username ou password sont vides
     if (!$_POST['username'] || !$_POST['password']) {
         $error = 'Identifiants invalides';
     } else {
+        // sinon on enregistre notre utilisateur en base
         $query = DbConnection::getPdo()->prepare('INSERT INTO user (username, password) VALUES (:username, :password)');
         $query->bindParam('username', $_POST['username']);
 
+        // ici pour plus de sécurité on hash notre mot de passe afin de le protéger
+        // et au cas ou ne pas garder le mdp en clair dans la base en cas de vol de données
+        // on vérifie un mot de passe hashé via password_verify
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
         $query->bindParam('password', $password);
@@ -24,8 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!$query->execute()) {
             $error = 'une erreur est survenue';
         } else {
-
-
             echo 'success';
         }
     }
@@ -36,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container">
     <h1>Créer un compte</h1>
 
+    <!-- Ici si l'erreur est différente de false, null ou  '' on affiche un message d'alerte montrant notre erreur -->
     <?php if ($error): ?>
         <div class="alert alert-warning" role="alert">
             <?php echo $error; ?>
