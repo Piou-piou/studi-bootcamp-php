@@ -1,13 +1,8 @@
 <?php
 
-require_once 'config/DbConnection.php';
-
+require_once 'config/config.php';
 
 $title = 'Créer un compte';
-
-require_once 'templates/head.php';
-require_once 'templates/header.php';
-
 $error = null;
 
 // test si la méthode envoyée est bien POST
@@ -30,10 +25,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!$query->execute()) {
             $error = 'une erreur est survenue';
         } else {
-            echo 'success';
+            // header Location ne doit jamais être appelé après de l'HTML dans vos pages
+            // sinon vous aurez l'erreur
+            // header already sent ...
+            header('Location: connection.php');
         }
     }
 }
+
+require_once 'templates/head.php';
+require_once 'templates/header.php';
 
 ?>
 
