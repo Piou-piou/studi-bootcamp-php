@@ -2,7 +2,7 @@
 
 class DbConnection
 {
-    const DSN = 'mysql:host=mysql;dbname=garage';
+    const DSN = 'mysql:host=127.0.0.1;dbname=garage';
     const USER = 'root';
     const PASSWORD = '';
 

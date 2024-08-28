@@ -2,9 +2,9 @@
 
 class DbConnection
 {
-    const DSN = 'mysql:host=mysql;dbname=garage';
+    const DSN = 'mysql:host=127.0.0.1;dbname=garage;port=3307';
     const USER = 'root';
-    const PASSWORD = '';
+    const PASSWORD = 'test';
 
     // définition de notre variable qui stockera notre PDO
     static ?PDO $pdo = null;
