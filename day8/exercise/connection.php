@@ -51,6 +51,14 @@ require_once 'templates/header.php';
             <?php echo $error; ?>
         </div>
     <?php endif; ?>
+    <?php if (isset($_SESSION['success_message'])): ?>
+        <div class="alert alert-warning" role="alert">
+            <?php
+            echo $_SESSION['success_message'];
+            unset($_SESSION['success_message']);
+            ?>
+        </div>
+    <?php endif; ?>
 
     <form action="" method="post">
         <div class="mb-3">

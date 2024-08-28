@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!$query->execute()) {
             $error = 'une erreur est survenue';
         } else {
+            $_SESSION['success_message'] = 'Compté créé, vous pouvez vous connceter';
+
             // header Location ne doit jamais être appelé après de l'HTML dans vos pages
             // sinon vous aurez l'erreur
             // header already sent ...
