@@ -23,4 +23,12 @@ class DbConnection
         // et on retourne la valeur
         return self::$pdo;
     }
+
+    public static function protectDbData($value)
+    {
+        $value = htmlspecialchars($value);
+        $value = strip_tags($value);
+
+        return $value;
+    }
 }

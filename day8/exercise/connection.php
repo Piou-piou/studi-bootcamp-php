@@ -32,6 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!$passwordOk) {
                 $error = 'Identifiants invalides';
             } else {
+                unset($user['password']);
+                $_SESSION['user'] = $user;
+
                 // si ok on redirige
                 header('Location: index.php');
             }

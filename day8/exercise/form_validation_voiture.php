@@ -13,8 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
     ) {
         echo 'UN des champs est vide. Insertion impossible !';
     } else  {
+/*        if (!is_int($_POST['annee']) || !is_int($_POST['km'])) {
+            echo 'Annee ou km pas un entier';
+            die;
+        }*/
+
         $query = DbConnection::getPdo()->prepare('INSERT INTO voiture
-            (immatriculation, marque, annee, modele, km, type_motorisation, etat)
+            (immatriculation, marque, annee, modele, km, type_motorisation, etat, user_id)
             VALUES (
                 :immatriculation,
                 :marque,
@@ -22,19 +27,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
                 :modele,
                 :km,
                 :type_motorisation,
-                :etat
+                :etat,
+                :user_id
             )
         ');
 
 
-
-        $query->bindParam('immatriculation', $_POST['immatriculation']);
-        $query->bindParam('marque', $_POST['marque']);
-        $query->bindParam('annee', $_POST['annee']);
+        $query->bindValue('immatriculation', DbConnection::protectDbData($_POST['immatriculation']));
+        $query->bindValue('marque', DbConnection::protectDbData($_POST['marque']));
+        $query->bindParam('annee', $_POST['annee'], PDO::PARAM_INT);
         $query->bindParam('modele', $_POST['modele']);
-        $query->bindParam('km', $_POST['km']);
+        $query->bindParam('km', $_POST['km'], PDO::PARAM_INT);
         $query->bindParam('type_motorisation', $_POST['type_motorisation']);
         $query->bindParam('etat', $_POST['etat']);
+        $query->bindParam('user_id', $_SESSION['user']['id'], PDO::PARAM_INT);
 
         $query->execute();
 
