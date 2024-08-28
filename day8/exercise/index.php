@@ -12,6 +12,12 @@ $voitures = $query->fetchAll(PDO::FETCH_ASSOC);
 require_once 'templates/head.php';
 require_once 'templates/header.php';
 
+// majeur.mineur.patch
+// grosse maj structurante du code et suppresion potentiel de code
+// mineur ajout de petites fonctionnalités + marquer des fonctionne comme "sera supprimée en 6.0.0"
+// patch correction de bug
+// 5.5.0
+
 
 ?>
 

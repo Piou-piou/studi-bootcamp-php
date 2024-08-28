@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class DbConnection
 {
     const DSN = 'mysql:host=127.0.0.1;dbname=garage;port=3307';
