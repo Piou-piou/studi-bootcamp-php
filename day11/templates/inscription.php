@@ -8,7 +8,7 @@
         </div>
     <?php endif; ?>
 
-    <form action="index.php?page=inscription" method="post">
+    <form action="/inscription/validate" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">Identifiant</label>
             <input type="text" class="form-control" id="username" name="username" >

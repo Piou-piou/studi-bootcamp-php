@@ -13,7 +13,7 @@ class Inscription
      * cette méthode permet de gérer le formulaire d'inscription
      * elle sera automatiquement appelée par notre index.php à la ligne 22
      */
-    public function managePostForm($post)
+    public function validate($post)
     {
         if (!$post['username'] || !$post['password']) {
             return 'Identifiants invalides';
@@ -33,12 +33,7 @@ class Inscription
             if (!$query->execute()) {
                 return 'une erreur est survenue';
             } else {
-                return true;
-
-                // ajout du message de succes en session pour pouvoir l'afficher sur la page de connection
-                /*$_SESSION['success_message'] = 'Votre compte a bien été créé';
-
-                header('Location: connection.php');*/
+                header('Location: /');
             }
         }
     }
