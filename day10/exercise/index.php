@@ -2,6 +2,35 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
+
+//monsite.com
+//monsite;com/mon-controller/mon-action/parametre
+//monsite;com/mon-controller/mon-action/parametre1/paramtere
+
+//exemples concrets
+// /inscription en get c'est pour afficher le form
+// /inscription/managePostForm en post pour gérer la création
+// ici on aura le Controller Inscription qui appelera la méthode managePostForm
+
+$uri = $_SERVER['REQUEST_URI'];
+$uriTable = explode('/', $uri);
+
+$controllerName = $uriTable[1];
+$actionName = '';
+if (isset($uriTable[2])) {
+    $actionName = $uriTable[2];
+}
+
+echo $controllerName.'<br>';
+echo $actionName;
+
+echo '<pre>';
+print_r($uriTable);
+echo '</pre>';
+
+die;
+
+
 $pageName = $_GET['page'] ?? 'homepage';
 $page = 'templates/'.$pageName.'.php';
 $error = null;
