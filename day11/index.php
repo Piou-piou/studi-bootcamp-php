@@ -2,28 +2,61 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
-// ic si pas de page existante dans mon url je veux afficher la page d'accueil
-$pageName = $_GET['page'] ?? 'homepage';
-$page = 'templates/'.$pageName.'.php';
+// via le .htacess on redirige toujours toutes les pages sur ce fichier
+// index.php pour gérer l'affichage comme on le souhaite
+// et aller chercher le controller et la méthode de manière automatique
+
+// ic on récupère l'URI de l'url
+// uri = partie interne de l"url, ce qiu se situe après https://monsite.com
+$uri = $_SERVER['REQUEST_URI'];
+
+// explode transforme une chaine de caractère en tableau en fondction d'un séprateur
+// ici le /
+// ici je choisi de séparer mon URi en 2 parties
+// premier partie = MonControler
+// seconde partie la méthode du controller
+$uriParts = explode('/', $uri);
+
+
+// si pas d'uriParts alors onn est sur l'accueil
+if (count($uriParts) === 2 && $uriParts[1] === '') {
+    $uriParts[1] = 'homepage';
+    $uriParts[2] = 'home';
+}
+
+// on enelve la premiere partie car l'uri commence par un slash donc vide
+unset($uriParts[0]);
+
+// ici on ajoute un majusccule au premier caractère car une class php doit toujours commencer par une maj
+$controller = ucfirst($uriParts[1]);
+
+// la partie 2 correspond à la méthode appelée
+$method = $uriParts[2];
+
+// App\Controller\Inscrption pour la page inscription
+// App\Controller\Login pour la page login
+// ucfisrt permet de mettre la première lettre en majuscule
+$controllerName = 'App\\Controller\\'.$controller;
+
+// ici on instancie la class qui va gérer notre formulaire et ses erreurs
+$controller = new $controllerName();
+
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // App\Controller\Inscrption pour la page inscription
-    // App\Controller\Login pour la page login
-    // ucfisrt permet de mettre la première lettre en majuscule
-    $controllerName = 'App\\Controller\\'.ucfirst($pageName);
-
-    // ici on instancie la class qui va gérer notre formulaire et ses erreurs
-    $controller = new $controllerName();
-
     // on appelle une méthode pour gérer notre formulare
     // on stock le résultat dans un var pour voir si erreur ou
     // si erreur le reoutr est diféérent de true
-    $result = $controller->managePostForm($_POST);
+    $result = $controller->$method($_POST);
     if ($result !== true) {
         $error = $result;
     }
+} else {
+    // methode GET, on récupère le chemin de la page
+    $page = $controller->$method();
 }
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,9 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <body>
         <header>
             <nav>
-                <a href="index.php">lien vers index</a>
-                <a href="index.php?page=ajout_voiture">Ajouter un voiture</a>
-                <a href="index.php?page=inscription">Inscription</a>
+                <a href="/">lien vers index</a>
+                <a href="/ajout_voiture">Ajouter un voiture</a>
+                <a href="/inscription/create">Inscription</a>
             </nav>
         </header>
 

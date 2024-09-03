@@ -2,7 +2,7 @@
     <h1>Créer un compte</h1>
 
     <!-- Ici si l'erreur est différente de false, null ou  '' on affiche un message d'alerte montrant notre erreur -->
-    <?php if ($error): ?>
+    <?php if ($error !== null): ?>
         <div class="alert alert-warning" role="alert">
             <?php echo $error; ?>
         </div>

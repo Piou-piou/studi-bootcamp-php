@@ -42,4 +42,9 @@ class Inscription
             }
         }
     }
+
+    public function create() {
+        // ici on récupère le chemin de notre fichier de template inscription.php
+        return __DIR__.'/../../templates/inscription.php';
+    }
 }
