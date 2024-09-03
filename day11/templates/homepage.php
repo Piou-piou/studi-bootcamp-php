@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Database\DbUtils;
+use App\Database\Dbutils;
 
 $query = Dbutils::getPdo()->query('SELECT * FROM voiture');
 $voitures = $query->fetchAll(PDO::FETCH_ASSOC);
