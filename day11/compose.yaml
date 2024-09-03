@@ -1,11 +1,11 @@
 services:
   www:
-    build: ../../docker/php
+    build: ../docker/php
     ports:
       - 8742:80
     volumes:
       - ./:/var/www
-      - ../../docker/php/vhosts:/etc/apache2/sites-enabled
+      - ../docker/php/vhosts:/etc/apache2/sites-enabled
     networks:
       - studi_php_day6
 
