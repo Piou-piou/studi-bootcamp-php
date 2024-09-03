@@ -2,6 +2,7 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
+// ic si pas de page existante dans mon url je veux afficher la page d'accueil
 $pageName = $_GET['page'] ?? 'homepage';
 $page = 'templates/'.$pageName.'.php';
 $error = null;

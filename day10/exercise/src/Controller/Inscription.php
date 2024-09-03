@@ -6,6 +6,12 @@ use App\Database\Dbutils;
 
 class Inscription
 {
+    /**
+     * @param $post
+     * @return string|true
+     * cette méthode permet de gérer le formulaire d'inscription
+     * elle sera automatiquement appelée par notre index.php à la ligne 22
+     */
     public function managePostForm($post)
     {
         if (!$post['username'] || !$post['password']) {
