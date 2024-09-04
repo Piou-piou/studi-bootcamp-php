@@ -18,7 +18,7 @@ class Inscription
         if (!$data['username'] || !$data['password']) {
             return [
                 'success' => false,
-                'template' => 'inscription',
+                'template' => 'user/inscription',
                 'message' => 'Identifiants invalides',
             ];
         } else {
@@ -37,7 +37,7 @@ class Inscription
             if (!$query->execute()) {
                 return [
                     'success' => false,
-                    'template' => 'inscription',
+                    'template' => 'user/inscription',
                     'message' => 'une erreur est survenue',
                 ];
             } else {
@@ -49,7 +49,7 @@ class Inscription
     }
 
     public function create() {
-        // ici on récupère le chemin de notre fichier de template inscription.php
+        // ici on renvoi le template de login
         return [
             'template' => 'user/inscription',
         ];

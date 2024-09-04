@@ -2,6 +2,8 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
+session_start();
+
 // via le .htacess on redirige toujours toutes les pages sur ce fichier
 // index.php pour gérer l'affichage comme on le souhaite
 // et aller chercher le controller et la méthode de manière automatique
@@ -47,13 +49,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // on appelle une méthode pour gérer notre formulare
     // on stock le résultat dans un var pour voir si erreur ou
     // si erreur le reoutr est diféérent de true
-    $result = $controller->$method($_POST);
-    if ($result !== true) {
-        $error = $result;
+    $data = $controller->$method($_POST);
+    if ($data['success'] !== true) {
+        $error = $data['message'];
     }
 } else {
-    // methode GET, on récupère le chemin de la page
-    $page = $controller->$method();
+    $data = $controller->$method();
 }
+
+// methode GET, on récupère le chemin de la page
+
+$page = 'templates/'.$data['template'].'.php';
 
 require_once 'templates/base_template.php';

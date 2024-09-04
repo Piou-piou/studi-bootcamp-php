@@ -22,6 +22,12 @@
                 <a href="/">lien vers index</a>
                 <a href="/ajout_voiture">Ajouter un voiture</a>
                 <a href="/inscription/create">Inscription</a>
+                <?php if (isset($_SESSION['user'])): ?>
+                    <a href="/login/logout">Déconnexion</a> |
+                    <a href="/profile/show">Mon compte : <?php echo $_SESSION['user']['username'] ?></a>
+                <?php else: ?>
+                    <a href="/login/show">Connexion</a>
+                <?php endif; ?>
             </nav>
         </header>
 
