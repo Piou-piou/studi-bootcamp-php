@@ -6,6 +6,9 @@ class Homepage
 {
     public function home()
     {
-        return 'Hello world';
+        return [
+            'success' => true,
+            'message' => 'l\'API est accessible',
+        ];
     }
 }
