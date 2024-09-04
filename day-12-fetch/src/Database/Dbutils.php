@@ -6,9 +6,9 @@ use PDO;
 
 class Dbutils
 {
-    const DSN = 'mysql:host=127.0.0.1;dbname=garage;port=3307';
+    const DSN = 'mysql:host=mysql;dbname=garage;port=3306';
     const USER = 'root';
-    const PASSWORD = 'test';
+    const PASSWORD = '';
 
     // définition de notre variable qui stockera notre PDO
     static ?PDO $pdo = null;
