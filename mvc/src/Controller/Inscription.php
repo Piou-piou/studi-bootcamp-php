@@ -51,7 +51,7 @@ class Inscription
     public function create() {
         // ici on récupère le chemin de notre fichier de template inscription.php
         return [
-            'template' => 'inscription',
+            'template' => 'user/inscription',
         ];
     }
 }
