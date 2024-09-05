@@ -7,6 +7,28 @@ use PDO;
 
 class Voiture
 {
+    public function list(): array
+    {
+        $query = Dbutils::getPdo()->prepare('SELECT * FROM voiture');
+        $query->execute();
+
+        $voitures = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$voitures) {
+            return [
+                'success' => false,
+                'message' => 'Aucune voiture présente dans la base',
+                'data' => null
+            ];
+        }
+
+        return [
+            'success' => true,
+            'message' => '',
+            'data' => $voitures
+        ];
+    }
+
     public function show(int $id): array
     {
         $query = Dbutils::getPdo()->prepare('SELECT * FROM voiture WHERE id = :id');
@@ -120,6 +142,14 @@ class Voiture
                 'message' => 'Une erreur est survenue lors de l\'enregistrement. Merci de rééssayer',
                 'data' => $data
             ];
+        }
+
+        if (!$id) {
+            $queryId = Dbutils::getPdo()->query('SELECT max(id) as voiture_id FROM voiture');
+            $queryId->execute();
+            $voitureInsertId = $queryId->fetch(PDO::FETCH_ASSOC);
+
+            $data['voiture_id_insert'] = $voitureInsertId['voiture_id'];
         }
 
         return  [
