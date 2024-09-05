@@ -1,10 +1,5 @@
 <?php
 
-/**
- * gérer la création et édition d'une voiture dans une seule et unique fonction privée nommée
- * manageVoiturePost
- */
-
 
 require_once __DIR__.'/vendor/autoload.php';
 
