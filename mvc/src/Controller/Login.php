@@ -7,7 +7,7 @@ use PDO;
 
 class Login
 {
-    public function show()
+    public function show(): array
     {
         return [
             'template' => 'user/login',
